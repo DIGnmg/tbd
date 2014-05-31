@@ -5,6 +5,7 @@
   "bitwise": true,
   "camelcase": true,
   "eqeqeq": true,
+  "eqnull":true,
   "immed": true,
   "indent": 4,
   "latedef": true,
@@ -18,5 +19,8 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "indent": 2
+  "indent": 2,
+  "globals":{
+    "angular":true
+  }
 }
