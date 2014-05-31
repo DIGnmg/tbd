@@ -24,15 +24,32 @@
   <!-- substitute:css -->
 </head>
 <body ng-app="app" ng-controller="HomeCtrl">
-  <h1>tba v{{version}}</h1>
-  <p>Welcome to your app!</p>
-  <p>We know you have things to do, so we won't bother you with too much generated code. Happy coding ;-)</p>
-  <p>This is fun!</p>
-  <p>Boom!</p>
-
+  <div class="container">
+    <h1>tba v{{version}}</h1>
+    <div class="column full">
+      <section class="full">
+        <ul class="cat-list">
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+          <li><img data-src="holder.js/250x250" alt="..."></li>
+        </ul>
+      </section>
+      <section class="go-button">
+        <button>
+          GO!
+        </button>
+      </section>
+    </div>
+  </div>
   <!-- substitute:livereload -->
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-  
+  <script type="text/javascript" src="bower_components/holderjs/holder.js"></script>
   <!-- substitute:js -->
 </body>
 </html>
