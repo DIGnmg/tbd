@@ -2,6 +2,7 @@
 
 function createXhr(method, uri, headers, username, password) {
   var xhr = new XMLHttpRequest();
+  xhr.open(method, uri, false, username, password);
   for (var key in headers) {
     if (headers.hasOwnProperty(key)) {
       xhr.setRequestHeader(key, headers[key]);
@@ -10,7 +11,6 @@ function createXhr(method, uri, headers, username, password) {
   if (username) {
     xhr.withCredentials = true;
   }
-  xhr.open(method, uri, false, username, password);
   return xhr;
 }
 
@@ -25,7 +25,7 @@ function querystring(params) {
 }
 
 function resourcePath(resource) {
-  if (!resource.indexOf('/')) {
+  if (resource.charAt(0) !== '/') {
     resource = '/resource/' + resource;
   }
   var extension = '.json',
@@ -43,15 +43,22 @@ function connection(config, method, resource, body, params, callback) {
     path = resourcePath(resource),
     uri = 'https://' + config.domain + path + query,
     headers = {
-      'X-App-Token': config.appToken,
       'Accept':'application/json'
     };
+
+  if (config.appToken) {
+      headers['X-App-Token'] = config.appToken;
+  }
 
   if (body != null) {
     headers['Content-Type'] = 'application/json';
     body = JSON.stringify(body);
   }
   var xhr = createXhr(method, uri, headers, config.username, config.password);
+  xhr.onerror = function (error) {
+    xhr.onload = null;
+    callback(error);
+  };
   xhr.onload = function deleteResponse() {
     var error = null,
       data = null;
@@ -75,20 +82,20 @@ function SODAClient(config) {
 
 SODAClient.prototype = {
 
-  get: function (resource, params) {
-    connection(this.config, 'GET', resource, params);
+  get: function (resource, params, callback) {
+    connection(this.config, 'GET', resource, null, params, callback);
   },
 
-  post: function (resource, body, params) {
-    connection(this.config, 'POST', resource, body, params);
+  post: function (resource, body, params, callback) {
+    connection(this.config, 'POST', resource, body, params, callback);
   },
 
-  put: function (resource, body, params) {
-    connection(this.config, 'PUT', resource, body, params);
+  put: function (resource, body, params, callback) {
+    connection(this.config, 'PUT', resource, body, params, callback);
   },
 
-  delete: function (resource, params) {
-    connection(this.config, 'DELETE', resource, params);
+  delete: function (resource, params, callback) {
+    connection(this.config, 'DELETE', resource, params, callback);
   }
 
 };
