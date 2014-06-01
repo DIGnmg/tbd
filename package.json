@@ -12,13 +12,36 @@
     "type": "git",
     "url": ""
   },
-  "dependencies": {},
-  "devDependencies": {
-    "gulp": "~3.6.0",
-    "pho-devstack": "~1.1.0",
-    "node.extend": "~1.0.10"
+  "scripts": {
+    "start": "gulp debug",
+    "test": "gulp test",
+    "prepublish": "gulp build"
   },
-  "script": {
-    "start": "gulp & open dist/index.html"
+  "devDependencies": {
+    "browserify": "^4.1.6",
+    "browserify-ngannotate": "0.0.6",
+    "es6ify": "^1.1.0",
+    "gulp": "^3.6.2",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-clean": "^0.3.0",
+    "gulp-connect": "^2.0.5",
+    "gulp-delta": "^0.1.1",
+    "gulp-file-include": "^0.3.1",
+    "gulp-jshint": "^1.6.1",
+    "gulp-scenario": "0.0.1",
+    "gulp-special-html": "0.0.4",
+    "gulp-styl": "^0.2.1",
+    "gulp-stylus": "^1.0.1",
+    "mold-source-map": "^0.3.0",
+    "rework-inline": "^0.2.0",
+    "uglifyify": "^2.4.0",
+    "vinyl-source-stream": "^0.1.1"
+  },
+  "browserify": {
+    "transform": [
+      "es6ify",
+      "browserify-ngannotate",
+      "uglifyify"
+    ]
   }
 }

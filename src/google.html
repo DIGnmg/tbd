@@ -22,7 +22,8 @@
 		  var mapOptions = {
 		    center: new google.maps.LatLng(36.1621981, -86.7770589),
 		    zoom: 18,
-		    mapTypeId: google.maps.MapTypeId.SATELLITE
+		    mapTypeId: google.maps.MapTypeId.SATELLITE,
+		    disableDefaultUI: true
 		  };
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		  map.setTilt(45);

@@ -1,22 +1,21 @@
-// For all available options, see node_modules/pho-devstack/config.js
-// These are development build settings, see gulpfile-production.js for production settings
-var gulp = require('gulp');
+'use strict';
 
-var extend = require('node.extend');
-var substituteConfig = require('./substitute-config');
+var gulp = require('gulp'),
+  build = require('./tasks')([
+  'lint',
+  'server',
+  'html',
+  'scripts',
+  'styles',
+  'copy',
+  'clean'
+]);
 
-require('pho-devstack')(gulp, {
-  imagemin: {
-    enabled: false
-  },
-
-  substituter: extend(true, substituteConfig, {
-    livereload: function() {
-      return "<script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>";
-    }
-  }),
-
-  copy: ['images/sprites/**/*', 'humans.txt', 'bower_components/angular/**/*.{js,map}', 'bower_components/holderjs/**/*.{js,map}']
+build.register('test', ['lint']);
+build.register('compile', ['copy',['styles','scripts','html']]);
+build.register('build', ['clean','compile']);
+build.register('watch', ['build'], function () {
+  return gulp.watch(['./src/**/*'], ['compile']);
 });
-
-// If needed, redefine tasks here
+build.register('debug', [['watch','server']]);
+build.register('default', ['build']);
