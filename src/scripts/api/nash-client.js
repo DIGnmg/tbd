@@ -12,4 +12,8 @@ function NashClient(appToken, username, password) {
 }
 NashClient.prototype = Object.create(Soda.prototype);
 
+NashClient.prototype.getParkLocations = function (params, callback) {
+	this.get('74d7-b74t', params, callback);
+};
+
 module.exports = NashClient;
