@@ -28,6 +28,7 @@
     "gulp-delta": "^0.1.1",
     "gulp-file-include": "^0.3.1",
     "gulp-jshint": "^1.6.1",
+    "gulp-less": "^1.2.3",
     "gulp-scenario": "0.0.1",
     "gulp-special-html": "0.0.4",
     "gulp-styl": "^0.2.1",
