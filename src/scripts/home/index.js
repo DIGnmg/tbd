@@ -1,3 +1,4 @@
-module.exports = angular.module('app.home', []);
+module.exports = angular.module('app.home', [
+  require('./HomeCtrl').name
+]);
 
-require('./HomeCtrl')

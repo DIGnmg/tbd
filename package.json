@@ -37,9 +37,7 @@
   },
   "browserify": {
     "transform": [
-      "es6ify",
-      "browserify-ngannotate",
-      "uglifyify"
+      "es6ify"
     ]
   }
 }
