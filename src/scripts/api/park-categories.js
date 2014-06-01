@@ -71,7 +71,8 @@ var categories = [{
 
 function mapList(list) {
   return list.reduce(function (map, item) {
-    return map[item];
+    map[item] = true;
+    return map;
   }, {});
 }
 
