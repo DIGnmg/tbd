@@ -16,7 +16,7 @@ module.exports = function browserifyTask() {
 			detectGlobals:true,
 			debug: (process.env.NODE_ENV !== 'production')
 		})
-		.pipe(mold.transformSourcesRelativeTo('./src/scripts'))
+		.pipe(mold.transformSourcesRelativeTo('./src'))
 		.pipe(source('main.js'))
 		.pipe(delta('./bin/scripts'))
 		.pipe(gulp.dest('./bin/scripts'));
